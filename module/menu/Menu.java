@@ -1,9 +1,17 @@
 package module.menu;
 public interface Menu {
-    public void add();
-    public void change();
-    public void show();
-    public void back();
+    public void add(
+        //추가에 대한것을 구현
+    );
+    public void change(
+        // 변경에 대한것을 구현
+    );
+    public void show(
+        // 출력에 대한것을 구현
+    );
+    public void back(
+        // 메인메뉴로 돌아가는것에 대한 구현
+    );
 }
 
 

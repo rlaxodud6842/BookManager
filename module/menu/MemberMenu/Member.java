@@ -3,7 +3,7 @@ package module.menu.MemberMenu;
 class Member{
     private String name;
     private String major;
-    private boolean state;
+    protected boolean state = true;
 
     public Member(String name, String major){
         this.name = name;
@@ -18,6 +18,13 @@ class Member{
         return this.major;
     }
     public String getId(){return "id";}
+    public String getState(){return "state";}
+    public void getAdditionalInformation(){}
+    public String[] loadAdditionalInformation(){
+        String[] informations = new String[0];
+        return informations;
+    }
+
 }
 
 

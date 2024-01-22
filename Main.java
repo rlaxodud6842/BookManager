@@ -1,10 +1,8 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import module.menu.MainMenuSelection;
 import module.menu.MemberMenu.*;
 
-// MMM is member manage menu
 
 public class Main {
     public static void main(String[] args) {
@@ -38,6 +36,5 @@ public class Main {
                 break;
             }
         }
-        sc.close();
     }
 }
