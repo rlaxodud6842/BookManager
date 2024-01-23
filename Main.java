@@ -16,10 +16,10 @@ public class Main {
                 while(true){
                 System.out.println("\n1: 구성원 추가\n2: 구성원 변경 \n3: 구성원 출력 \n4: 메인메뉴");
                 int memberMenuSelection = sc.nextInt();
-                    if(memberMenuSelection == MemberMenuEnum.MEMBERADD.getValue()){
+                if(memberMenuSelection == MemberMenuEnum.MEMBERADD.getValue()){
                         memberMenu.add();
                     }else if (memberMenuSelection == MemberMenuEnum.MAMBERCHANGE.getValue()){
-                        //멤버 변경
+                        memberMenu.change();
                     }else if (memberMenuSelection == MemberMenuEnum.MEMBERSHOW.getValue()){
                         memberMenu.show();
                     }else if(memberMenuSelection == MemberMenuEnum.MAINMENU.getValue()){

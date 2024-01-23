@@ -6,6 +6,7 @@ class Lecture extends Member{
     private static int id = 0;
     private String[] addtionalInformation = new String[2];
     private int lid;
+    
     public Lecture(String name, String major){
         super(name,major);
         Lecture.id++;
