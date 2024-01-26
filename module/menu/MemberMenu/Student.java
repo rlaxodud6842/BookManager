@@ -24,8 +24,17 @@ public class Student extends Member{
 
     public void getAdditionalInformation(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("추가 정보를 다음과 같은 순으로 입력해주세요 -> 학년, 학점, 연락처");
-        for (int i = 0; i < 3; i++){this.addtionalInformation[i] = sc.nextLine();}
+        for (int i = 0; i < 3; i++){
+            if(i == 0){
+                System.out.println("학년을 입력하세요");
+            }else if (i == 1){
+                System.out.println("학점을 입력하세요");
+            }else if (i == 2){
+                System.out.println("연락처를 입력하세요");
+            }
+            this.addtionalInformation[i] = sc.nextLine();
+        }
+
     }
     public String[] loadAdditionalInformation(){
         return this.addtionalInformation;

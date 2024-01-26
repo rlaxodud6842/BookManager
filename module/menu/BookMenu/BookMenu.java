@@ -1,6 +1,5 @@
 package module.menu.BookMenu;
 import module.menu.Menu;
-import module.menu.MemberMenu.Student;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,95 +7,99 @@ import java.util.Scanner;
 
 public class BookMenu implements Menu{
     /*
-     * ¡Ü ÀâÁö µµ¼­ Á¤º¸: ID (M+2ÀÚ¸® ¼ıÀÚ), µµ¼­¸í, ÃâÆÇ»ç, ÃâÆÇ³âµµ(³â¿ùÀÏ), »óÅÂ(´ëÃâ °¡´É, ´ëÃâ Áß, ´ëÃâ ºÒ°¡), ±Ç/È£
-        ¡Ü Àü°ø µµ¼­ Á¤º¸: ID (B+2ÀÚ¸® ¼ıÀÚ), µµ¼­¸í, ÃâÆÇ»ç, ÃâÆÇ³âµµ(³â¿ùÀÏ), »óÅÂ(´ëÃâ °¡´É, ´ëÃâ Áß, ´ëÃâ ºÒ°¡), ¼¼ºÎ ÁÖÁ¦
+     * â— ì¡ì§€ ë„ì„œ ì •ë³´: ID (M+2ìë¦¬ ìˆ«ì), ë„ì„œëª…, ì¶œíŒì‚¬, ì¶œíŒë…„ë„(ë…„ì›”ì¼), ìƒíƒœ(ëŒ€ì¶œ ê°€ëŠ¥, ëŒ€ì¶œ ì¤‘, ëŒ€ì¶œ ë¶ˆê°€), ê¶Œ/í˜¸
+        â— ì „ê³µ ë„ì„œ ì •ë³´: ID (B+2ìë¦¬ ìˆ«ì), ë„ì„œëª…, ì¶œíŒì‚¬, ì¶œíŒë…„ë„(ë…„ì›”ì¼), ìƒíƒœ(ëŒ€ì¶œ ê°€ëŠ¥, ëŒ€ì¶œ ì¤‘, ëŒ€ì¶œ ë¶ˆê°€), ì„¸ë¶€ ì£¼ì œ
      */
-    ArrayList<Member> memberList = new ArrayList<Member>();
+    ArrayList<Book> bookList = new ArrayList<Book>();
     Scanner sc = new Scanner(System.in);
 
     public void add(){
-        //Àü°øÀÎÁö ÀâÁöÀÎÁö È®ÀÎÇÏ±â
-        //ÀÌÈÄ Ãß°¡ Á¤º¸ ÀÔ·ÂÇÏ°Ô ÇÏ±â
-        System.out.println("1 (m/f)");
+        //ì „ê³µì¸ì§€ ì¡ì§€ì¸ì§€ í™•ì¸í•˜ê¸°
+        //ì´í›„ ì¶”ê°€ ì •ë³´ ì…ë ¥í•˜ê²Œ í•˜ê¸°
+        System.out.println("ì¡ì§€ì¸ê°€ìš”, ì „ê³µì±…ì¸ê°€ìš”?");
         String identify = sc.nextLine();
 
-        System.out.println("ÀÌ¸§Àº ¹«¾ùÀÔ´Ï±î?");
-        String name = sc.nextLine();
-        System.out.println("Àü°øÀº ¹«¾ùÀÔ´Ï±î?");
-        String major = sc.nextLine();
+        System.out.println("ë„ì„œëª…ì€ ë¬´ì—‡ì…ë‹ˆê¹Œ?");
+        String bookname = sc.nextLine();
+        System.out.println("ì¶œíŒì‚¬ëŠ” ì–´ë””ì…ë‹ˆê¹Œ?");
+        String publisher = sc.nextLine();
+        System.out.println("ì¶œíŒë…„ë„(ë…„ì›”ì¼)ëŠ” ì–¸ì œì…ë‹ˆê¹Œ?");
+        String publicationYear = sc.nextLine();
+        System.out.println("| ëŒ€ì¶œê°€ëŠ¥ | ëŒ€ì¶œì¤‘ | ëŒ€ì¶œë¶ˆê°€ |\n ìƒíƒœë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+        String state = sc.nextLine();
 
-        if (identify.equals("s")){ //ÇĞ»ıÀÏ °æ¿ì
-            Member student = new Student(name,major);
-            memberList.add(student);
-            student.getAdditionalInformation();
-       }else if (identify.equals("l")){ // ±³¼öÀÏ °æ¿ì
-            Member lecture = new FieldOfStudy(name,major);
-            memberList.add(lecture);
-            lecture.getAdditionalInformation();
+        if (identify.equals("ì¡ì§€")){
+            //ì¡ì§€ì¼ ê²½ìš°
+            System.out.println("ê¶Œ/í˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+            String etc = sc.nextLine();
+            Book magazine = new Magazine(bookname,publisher,publicationYear,state,etc);
+            bookList.add(magazine);
+       }else if (identify.equals("ì „ê³µì±…")){
+            System.out.println("ì„¸ë¶€ì£¼ì œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+            String etc = sc.nextLine();
+            Book studyField = new StudyField(bookname,publisher,publicationYear,state,etc);
+            bookList.add(studyField);
        }else{
-            System.out.println(identify + "<- Àß¸ø ÀÔ·ÂµÈ ¹®ÀÚ");
+            System.out.println(identify + "<- ì˜ëª» ì…ë ¥ëœ ë¬¸ì");
        }
     }
 
     public void change(){
-        //»ç¿ëÀÚ¿¡°Ô º¯°æÇÒ ID ÀÔ·Â
+        //ì‚¬ìš©ìì—ê²Œ ë³€ê²½í•  ID ì…ë ¥
         sc = new Scanner(System.in);
-        System.out.println("º¯°æ½ÃÅ°°í ½ÍÀº ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+        System.out.println("ë³€ê²½ì‹œí‚¤ê³  ì‹¶ì€ IDë¥¼ ì…ë ¥í•˜ì„¸ìš”");
         String targetId = sc.nextLine();
-        //¹è¿­Áß¿¡¼­ Ã£¾Æ¼­ º¯°æ½ÃÅ°±â
-        for (Member member : memberList) {
-            if(member.getId().equals(targetId)){
-                if(member.state == true){
-                    member.state = false;
-                }else{
-                    member.state = true;
+        //ë°°ì—´ì¤‘ì—ì„œ ì°¾ì•„ì„œ ë³€ê²½ì‹œí‚¤ê¸°
+        for (Book book : bookList) {
+            if(book.getId().equals(targetId)){
+                if(book.getState().equals("ëŒ€ì¶œì¤‘")){
+                    System.out.println("ëŒ€ì¶œì¤‘ì¸ ë„ì„œëŠ” ë³€ê²½ ë¶ˆê°€ëŠ¥");
+                    break;
                 }
+                System.out.println(book.changeState());
             }
         }
     }
 
-    public void print(Member member, int limit){
+    public void print(Book book){
         StringBuilder sb = new StringBuilder();
-        String[] addtionalInformataion = member.loadAdditionalInformation();
-        sb.append(member.getId() + " | ");
-        sb.append(member.getName() + " | ");
-        sb.append(member.getMajor()+ " | ");
-        sb.append(member.getState()+ " | ");
-
-        for (int i = 0; i<limit; i++){
-            sb.append(addtionalInformataion[i] + " | ");
-        }
+        
+        sb.append(book.getId()).append(" | ");
+        sb.append(book.getBookName()).append(" | ");
+        sb.append(book.getPublisher()).append(" | ");
+        sb.append(book.getPublishcationYear()).append(" | ");
+        sb.append(book.getState()).append(" | ");
+        sb.append(book.getEtc()).append(" | ");
         System.out.println(sb);
     }
     public void show(){
-        ArrayList<Member> lectureList = new ArrayList<>();
-        ArrayList<Member> studentList = new ArrayList<>();
-        
-        System.out.println("º¸¿©ÁÖ±â");
-        for (Member member : memberList) {
-            //±³¼öÀÎÁö ÇĞ»ıÀÎÁö ±¸ºĞ ÈÄ °¢°¢ ¹è¿­¿¡ ³Ö±â
-            if(member.getId().charAt(0) == 'F'){
-                lectureList.add(member);
+        ArrayList<Book> studyFieldsList = new ArrayList<>();
+        ArrayList<Book> magazinList = new ArrayList<>();
+        for (Book book : bookList) {
+            //êµìˆ˜ì¸ì§€ í•™ìƒì¸ì§€ êµ¬ë¶„ í›„ ê°ê° ë°°ì—´ì— ë„£ê¸°
+            if(book.getId().charAt(0) == 'M'){
+                magazinList.add(book);
+
             }else{
-                studentList.add(member);
+                studyFieldsList.add(book);
             }
-            //ÀÌ¸§ ¿À¸§Â÷¼ø Á¤·Ä
-            Collections.sort(lectureList);
-            Collections.sort(studentList);
+            //ì´ë¦„ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+            Collections.sort(magazinList);
+            Collections.sort(studyFieldsList);
         }
-        //±³¼ö Ãâ·Â
+        //êµìˆ˜ ì¶œë ¥
         System.out.println("==================================================");
-        System.out.println("ID | ¼º¸í | ÇĞ°ú | »óÅÂ | Àü°ø | ¿¬±¸½Ç |");
+        System.out.println("ID | ë„ì„œëª… | ì¶œíŒì‚¬ | ì¶œíŒë…„ë„ | ìƒíƒœ | ê¶Œ/í˜¸ |");
         System.out.println("--------------------------------------------------");
-        for (Member lecture : lectureList) {
-            print(lecture,2);
+        for (Book magazine : magazinList) {
+            print(magazine);
         }
-        //ÇĞ»ı Ãâ·Â
+        //í•™ìƒ ì¶œë ¥
         System.out.println("==================================================");
-        System.out.println("ID | ¼º¸í | ÇĞ°ú | »óÅÂ | ÇĞ³â | ÇĞÁ¡ | ¿¬¶ôÃ³ |");
+        System.out.println("ID | ë„ì„œëª… | ì¶œíŒì‚¬ | ì¶œíŒë…„ë„ | ìƒíƒœ | ì„¸ë¶€ ì£¼ì œ |");
         System.out.println("--------------------------------------------------");
-        for (Member student : studentList) {
-            print(student,3);
+        for (Book studyFields : studyFieldsList) {
+            print(studyFields);
         }
     }
     public void back(){}

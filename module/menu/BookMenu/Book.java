@@ -2,17 +2,17 @@ package module.menu.BookMenu;
 
 class Book implements Comparable<Book>{
     private String bookName;
-    private String major;
     private String publicationYear;
     private String publisher;
     private String state;
+    private String etc;
     
-    public Book(String bookname, String major, String publisher, String publicationYear,String state){
+    public Book(String bookname, String publisher, String publicationYear,String state,String etc){
         this.bookName = bookname;
-        this.major = major;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
         this.state = state;
+        this.etc = etc;
     }
     //도서명 bookname
     //출판사 publisher
@@ -22,27 +22,21 @@ class Book implements Comparable<Book>{
         return this.bookName;
     }
 
-    public String getMajor(){
-        return this.major;
+    public String getPublisher(){return this.publisher;}
+    public String getPublishcationYear(){
+        return this.publicationYear;
     }
     public String getId(){return "id";}
-
-    public String getState(){
-        
-        this.state.equals("Loan available","On loan","No loan possible");
-        return "state";
-    }
-
-    public void getAdditionalInformation(){}
-
-    public String[] loadAdditionalInformation(){
-        String[] informations = new String[0];
-        return informations;
-    }
+    public String getState(){ return this.state;}
+    public String getEtc(){ return this.etc;}
+    public String changeState(){
+        this.state = "대출 불가";
+        return "변경이 완료되었습니다";
+    };
     
     @Override
     public int compareTo(Book o) {
-        int compareResult = this.name.compareTo(o.name);
+        int compareResult = this.bookName.compareTo(o.bookName);
         if (compareResult < 0) {
             return -1;
         } else if (compareResult > 0) {

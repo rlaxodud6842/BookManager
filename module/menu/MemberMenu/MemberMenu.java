@@ -11,7 +11,7 @@ public class MemberMenu implements Menu{
 
     public void add(){
         System.out.println("학생인가요 교수인가요? (s/l)");
-        String identify = sc.nextLine();
+        String identify = String.valueOf(sc.nextLine());
 
         System.out.println("이름은 무엇입니까?");
         String name = sc.nextLine();

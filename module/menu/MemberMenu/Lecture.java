@@ -26,8 +26,14 @@ class Lecture extends Member{
 
     public void getAdditionalInformation(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("추가 정보를 다음과 같은 순으로 입력해주세요 -> 전공, 연구실");
-        for (int i = 0; i < 2; i++){this.addtionalInformation[i] = sc.nextLine();}
+        for (int i = 0; i < 2; i++){
+            if(i == 0){
+                System.out.println("전공을 입력하세요");
+            }else if (i == 1){
+                System.out.println("연구실을 입력하세요");
+            }
+            this.addtionalInformation[i] = sc.nextLine();
+        }
     }
 
     public String[] loadAdditionalInformation(){

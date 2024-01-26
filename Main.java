@@ -9,6 +9,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         MemberMenu memberMenu = new MemberMenu();
+        BookMenu bookMenu = new BookMenu();
+
+
         while (true) {
             System.out.println("\n1: 구성원 관리\n2: 도서 관리 \n3: 대출 관리 \n4: 종료");
             int mainMenuSelection = sc.nextInt();
@@ -32,7 +35,21 @@ public class Main {
             }
             } else if (mainMenuSelection == MainMenuSelection.BOOKMANAGE.getValue()) { 
                 //도서 관리
-                System.out.println("2번 메뉴");
+                while(true){
+                    System.out.println("\n1:도서 추가\n2:도서 변경 \n3:도서 출력 \n4: 메인메뉴");
+                    int bookMenuSelection = sc.nextInt();
+                    if(bookMenuSelection == BookMenuEnum.BOOKADD.getValue()){
+                            bookMenu.add();
+                        }else if (bookMenuSelection == BookMenuEnum.BOOKCHANGE.getValue()){
+                            bookMenu.change();
+                        }else if (bookMenuSelection == BookMenuEnum.BOOKSHOW.getValue()){
+                            bookMenu.show();
+                        }else if(bookMenuSelection == BookMenuEnum.MAINMENU.getValue()){
+                            break;
+                        }else{
+                            System.out.println("올바른 숫자를 입력\n");
+                        }
+                    }
             } else if (mainMenuSelection == MainMenuSelection.LOANMANAGE.getValue()) { //대출 관리
                 System.out.println("3번 메뉴");
             } else if (mainMenuSelection == MainMenuSelection.EXIT.getValue()){
