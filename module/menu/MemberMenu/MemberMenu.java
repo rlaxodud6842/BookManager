@@ -6,29 +6,30 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class MemberMenu implements Menu{
-    ArrayList<Member> memberList = new ArrayList<Member>();
+    private static ArrayList<Member> memberList = new ArrayList<Member>();
     Scanner sc = new Scanner(System.in);
 
     public void add(){
-        System.out.println("학생인가요 교수인가요? (s/l)");
-        String identify = String.valueOf(sc.nextLine());
-
-        System.out.println("이름은 무엇입니까?");
-        String name = sc.nextLine();
-        System.out.println("전공은 무엇입니까?");
-        String major = sc.nextLine();
-
-        if (identify.equals("s")){ //학생일 경우
-            Member student = new Student(name,major);
-            memberList.add(student);
-            student.getAdditionalInformation();
-       }else if (identify.equals("l")){ // 교수일 경우
-            Member lecture = new Lecture(name,major);
-            memberList.add(lecture);
-            lecture.getAdditionalInformation();
-       }else{
-            System.out.println(identify + "<- 잘못 입력된 문자");
-       }
+//        System.out.println("학생인가요 교수인가요?");
+//        String identify = String.valueOf(sc.nextLine());
+//
+//        System.out.println("이름은 무엇입니까?");
+//        String name = sc.nextLine();
+//        System.out.println("전공은 무엇입니까?");
+//        String major = sc.nextLine();
+//        if (identify.equals("학생")){ //학생일 경우
+//            Member student = new Student(name,major);
+//            memberList.add(student);
+//            student.getAdditionalInformation();
+//       }else if (identify.equals("교수")){ // 교수일 경우
+//            Member lecture = new Lecture(name,major);
+//            memberList.add(lecture);
+//            lecture.getAdditionalInformation();
+//       }else{
+//            System.out.println(identify + "<- 잘못 입력된 문자");
+//       }
+        Member s = new Student("거미","킬러");
+        memberList.add(s);
     }
 
     public void change(){
@@ -92,6 +93,6 @@ public class MemberMenu implements Menu{
             print(student,3);
         }
     }
-    public void back(){}
+    public ArrayList<Member> getMemberList(){return MemberMenu.memberList;}
 }
 

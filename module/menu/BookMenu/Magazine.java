@@ -3,8 +3,8 @@ class Magazine extends Book{
     private static int id = 0;
     private int mid;
 
-    public Magazine(String bookName, String publisher, String publicationYear,String state,String etc){
-        super(bookName,publisher,publicationYear,state,etc);
+    public Magazine(String classification, String bookName, String publisher, String publicationYear,String state,String etc){
+        super(classification,bookName,publisher,publicationYear,state,etc);
         Magazine.id++;
         mid = Magazine.id;
     }

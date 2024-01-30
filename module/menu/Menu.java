@@ -9,9 +9,6 @@ public interface Menu {
     public void show(
         // 출력에 대한것을 구현
     );
-    public void back(
-        // 메인메뉴로 돌아가는것에 대한 구현
-    );
 }
 
 

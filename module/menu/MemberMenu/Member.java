@@ -1,11 +1,11 @@
 package module.menu.MemberMenu;
 
-class Member implements Comparable<Member>{
+public class Member implements Comparable<Member>{
     private String name;
     private String major;
     protected boolean state = true;
 
-    public Member(String name, String major){
+    public void loadNameAndMajor(String name, String major){
         this.name = name;
         this.major = major;
     }
@@ -20,8 +20,6 @@ class Member implements Comparable<Member>{
     public String getId(){return "id";}
 
     public String getState(){return "state";}
-
-    public void getAdditionalInformation(){}
 
     public String[] loadAdditionalInformation(){
         String[] informations = new String[0];

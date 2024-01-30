@@ -7,8 +7,8 @@ class Lecture extends Member{
     private String[] addtionalInformation = new String[2];
     private int lid;
     
-    public Lecture(String name, String major){
-        super(name,major);
+    public Lecture(String name,String major){
+        loadNameAndMajor(name,major);
         Lecture.id++;
         lid = Lecture.id;
     }

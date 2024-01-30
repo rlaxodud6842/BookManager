@@ -3,8 +3,8 @@ class StudyField extends Book{
     private static int id = 0;
     private final int bid;
 
-    public StudyField(String bookName, String publisher, String publicationYear,String state,String etc){
-        super(bookName,publisher,publicationYear,state,etc);
+    public StudyField(String classification,String bookName, String publisher, String publicationYear,String state,String etc){
+        super(classification,bookName,publisher,publicationYear,state,etc);
         StudyField.id++;
         bid = StudyField.id;
     }

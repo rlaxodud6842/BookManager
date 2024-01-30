@@ -1,27 +1,24 @@
 package module.menu.BookMenu;
 
-class Book implements Comparable<Book>{
+public class Book implements Comparable<Book>{
     private String bookName;
     private String publicationYear;
     private String publisher;
     private String state;
     private String etc;
+    private String classification;
     
-    public Book(String bookname, String publisher, String publicationYear,String state,String etc){
+    public Book(String classification,String bookname, String publisher, String publicationYear,String state,String etc){
+        this.classification = classification;
         this.bookName = bookname;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
         this.state = state;
         this.etc = etc;
     }
-    //도서명 bookname
-    //출판사 publisher
-    //출판년도(년월일) Publication year
-    //상태(대출 가능, 대출 중, 대출 불가) state
     public String getBookName(){
         return this.bookName;
     }
-
     public String getPublisher(){return this.publisher;}
     public String getPublishcationYear(){
         return this.publicationYear;
@@ -29,11 +26,20 @@ class Book implements Comparable<Book>{
     public String getId(){return "id";}
     public String getState(){ return this.state;}
     public String getEtc(){ return this.etc;}
-    public String changeState(){
-        this.state = "대출 불가";
+    public String getClassification(){ return this.classification;}
+    public String changeStateToLoanX(){
+        this.state = "대출불가";
         return "변경이 완료되었습니다";
-    };
-    
+    }
+    public void changeStateToLoaning(){
+        this.state = "대출중";
+    }
+
+    public void changeStateToLoan(){
+        this.state = "대출가능";
+    }
+
+
     @Override
     public int compareTo(Book o) {
         int compareResult = this.bookName.compareTo(o.bookName);

@@ -6,42 +6,40 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class BookMenu implements Menu{
-    /*
-     * ● 잡지 도서 정보: ID (M+2자리 숫자), 도서명, 출판사, 출판년도(년월일), 상태(대출 가능, 대출 중, 대출 불가), 권/호
-        ● 전공 도서 정보: ID (B+2자리 숫자), 도서명, 출판사, 출판년도(년월일), 상태(대출 가능, 대출 중, 대출 불가), 세부 주제
-     */
-    ArrayList<Book> bookList = new ArrayList<Book>();
+    private static ArrayList<Book> bookList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
     public void add(){
         //전공인지 잡지인지 확인하기
         //이후 추가 정보 입력하게 하기
-        System.out.println("잡지인가요, 전공책인가요?");
-        String identify = sc.nextLine();
-
-        System.out.println("도서명은 무엇입니까?");
-        String bookname = sc.nextLine();
-        System.out.println("출판사는 어디입니까?");
-        String publisher = sc.nextLine();
-        System.out.println("출판년도(년월일)는 언제입니까?");
-        String publicationYear = sc.nextLine();
-        System.out.println("| 대출가능 | 대출중 | 대출불가 |\n 상태를 입력해주세요");
-        String state = sc.nextLine();
-
-        if (identify.equals("잡지")){
-            //잡지일 경우
-            System.out.println("권/호를 입력해주세요");
-            String etc = sc.nextLine();
-            Book magazine = new Magazine(bookname,publisher,publicationYear,state,etc);
-            bookList.add(magazine);
-       }else if (identify.equals("전공책")){
-            System.out.println("세부주제를 입력해주세요");
-            String etc = sc.nextLine();
-            Book studyField = new StudyField(bookname,publisher,publicationYear,state,etc);
-            bookList.add(studyField);
-       }else{
-            System.out.println(identify + "<- 잘못 입력된 문자");
-       }
+//        System.out.println("잡지인가요, 전공인가요?");
+//        String classification = sc.nextLine();
+//
+//        System.out.println("도서명은 무엇입니까?");
+//        String bookname = sc.nextLine();
+//        System.out.println("출판사는 어디입니까?");
+//        String publisher = sc.nextLine();
+//        System.out.println("출판년도(년월일)는 언제입니까?");
+//        String publicationYear = sc.nextLine();
+//        System.out.println("| 대출가능 | 대출중 | 대출불가 |\n 상태를 입력해주세요");
+//        String state = sc.nextLine();
+//
+//        if (classification.equals("잡지")){
+//            //잡지일 경우
+//            System.out.println("권/호를 입력해주세요");
+//            String etc = sc.nextLine();
+//            Book magazine = new Magazine(classification,bookname,publisher,publicationYear,state,etc);
+//            bookList.add(magazine);
+//       }else if (classification.equals("전공책")){
+//            System.out.println("세부주제를 입력해주세요");
+//            String etc = sc.nextLine();
+//            Book studyField = new StudyField(classification,bookname,publisher,publicationYear,state,etc);
+//            bookList.add(studyField);
+//       }else{
+//            System.out.println(classification + "<- 잘못 입력된 문자");
+//       }
+        Book m = new Magazine("나무","죠밥","publisher","publicationYear","대출가능","etc");
+        bookList.add((m));
     }
 
     public void change(){
@@ -56,7 +54,7 @@ public class BookMenu implements Menu{
                     System.out.println("대출중인 도서는 변경 불가능");
                     break;
                 }
-                System.out.println(book.changeState());
+                System.out.println(book.changeStateToLoanX());
             }
         }
     }
@@ -102,6 +100,21 @@ public class BookMenu implements Menu{
             print(studyFields);
         }
     }
-    public void back(){}
+    public void sync(String bookId,boolean loanFalg){
+        for (Book book : bookList){
+            if (book.getId().equals(bookId)){
+                if(loanFalg){
+                    book.changeStateToLoaning();
+                }else{
+                    book.changeStateToLoan();
+                }
+            }
+        }
+
+
+    }
+    public ArrayList<Book> getBookList(){
+        return BookMenu.bookList;
+    }
 }
 
