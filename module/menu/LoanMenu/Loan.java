@@ -31,31 +31,30 @@ public class Loan {
         temp[1] = loandate;
         loanInformation.add(temp);
     }
-    public void returning(String bookId, String returndate){
+    public void returning(String memberId, String returndate){
         for (String[] temp : loanInformation){
             //정보들 중에서 loaner의 정보를 찾고
-            if (temp[0].equals(bookId)){
+            if (temp[0].equals(memberId)){
                 Date ldate = new Date(temp[1]);
                 Date rdate = new Date(returndate);
                 //그놈 기반으로 loandate 얻고 거기서 return데이터 갱신
                 temp[2] = returndate;
                 temp[3] = ldate.getLoanDate(rdate);
-                loanInformation.add(temp);
             }
         }
     }
 
     public void print(){
         StringBuilder sb = new StringBuilder();
-        sb.append(classification);
-        sb.append(bookName);
+        sb.append(classification+" ");
+        sb.append(bookName+" ");
+
         int counter = 0;
-
         ArrayList<String[]> tempLoanInformation = loanInformation;
-
+        try{
         if (tempLoanInformation.size() > 1){
             while(tempLoanInformation.size() != 0){
-                Date min = new Date("0000.00.00");
+                Date min = new Date("9999.99.99");
                 for(String[] loaninfo : tempLoanInformation){
                     //어레이 리스트를 순회하면서 (제일 작을때) 멈춰서 그녀석을 sb append함
                     //돌때마다 제일 작은걸 저장
@@ -63,28 +62,37 @@ public class Loan {
                     if(loandate.isSmallerThanArgument(min)){min = loandate;}
                     //한번더 돌아서 작은놈 sb에 넣고 삭제
                 }
-
                 for(String[] loaninfo : tempLoanInformation){
                     Date loandate = new Date(loaninfo[1]);
                     if(loandate.isSameValue(min)){
-                        if(counter > 1){
-                            System.out.printf("            %s %s %s %s",loaninfo[0],loaninfo[1],loaninfo[2],loaninfo[3]);
+                        if(counter > 0){
+                            System.out.printf("%s %s %s %s\n",loaninfo[0],loaninfo[1],loaninfo[2],loaninfo[3]);
+                            tempLoanInformation.remove(loaninfo);
+                        }else{
+                            sb.append(loaninfo[0]+" ");
+                            sb.append(loaninfo[1]+" ");
+                            sb.append(loaninfo[2]+" ");
+                            sb.append(loaninfo[3]+" ");
+                            System.out.println(sb);
+
+
+                            tempLoanInformation.remove(loaninfo);
                         }
-                        sb.append(loaninfo[0]);
-                        sb.append(loaninfo[1]);
-                        sb.append(loaninfo[2]);
-                        sb.append(loaninfo[3]);
-                        System.out.println(sb);
-                        //처음이면 sb어펜드 시켜서 출력
-                        //2회 이상이면 그냥 프린트 시켜
+                        counter++;
                     }
-                    tempLoanInformation.remove(loaninfo);
-                    //한번더 돌아서 작은놈 sb에 넣고 삭제
                 }
             }
         }else{
-            //그냥 일반 경우
         }
+            for(String[] loaninfo : loanInformation){
+                sb.append(loaninfo[0]+" ");
+                sb.append(loaninfo[1]+" ");
+                sb.append(loaninfo[2]+" ");
+                sb.append(loaninfo[3]+" ");
+            }
+            System.out.println(sb);
+        }catch(Exception e){}
+        //대출 정보가 하나라면
     }
 }
 

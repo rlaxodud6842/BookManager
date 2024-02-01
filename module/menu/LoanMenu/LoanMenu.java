@@ -36,19 +36,17 @@ public class LoanMenu implements Menu{
         ArrayList<Book> bookList = bm.getBookList();
 
         System.out.println("빌릴 구성원 ID를 입력해주세요");
-        String targetmemberId = "U1";//sc.nextLine();
+        String targetmemberId = sc.nextLine();
         System.out.println("빌릴 도서 ID를 입력해주세요");
-        String targetbookId = "M1";//sc.nextLine();
+        String targetbookId = sc.nextLine();
         System.out.println("대출일자를 입력해주세요");
-        String loanDate = "2023.01.01";//sc.nextLine();
+        String loanDate = sc.nextLine();
 
         String membername = null;
         boolean earlyflag = true;
 
         if(isRealMember(memberList,targetmemberId) && isRealBook(bookList,targetbookId)){
             for(Member member : memberList){
-                member.getState().equals("졸업");
-
                 if(member.getId().equals(targetmemberId)){
                     if(member.getState().equals("졸업")){
                         //타겟 멤버가 졸업이면
@@ -102,6 +100,8 @@ public class LoanMenu implements Menu{
         }
     }
     public void change(){
+        System.out.println("반납하는사람 이름을 입력해주세요");
+        String targetmemberId = sc.nextLine();
         System.out.println("반납할 도서 ID를 입력해주세요");
         String targetbookId = sc.nextLine();
         System.out.println("반납일자를 입력해주세요");
@@ -111,7 +111,7 @@ public class LoanMenu implements Menu{
         for (Loan loaninfo : loanList){
             if (loaninfo.getbookId().equals(targetbookId)){
                 //찾아서 그녀석의 반납일자와 반납일을 갱신시켜준다
-                loaninfo.returning(loaninfo.getbookId(),returnDate);
+                loaninfo.returning(targetmemberId,returnDate);
             }
         }
         //book 객체의 상태를 동기화 시켜준다.

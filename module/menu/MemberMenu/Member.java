@@ -21,6 +21,7 @@ public class Member implements Comparable<Member>{
 
     public String getState(){return "state";}
 
+    public void getAdditionalInformation(){}
     public String[] loadAdditionalInformation(){
         String[] informations = new String[0];
         return informations;

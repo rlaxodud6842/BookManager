@@ -10,8 +10,8 @@ public class BookMenu implements Menu{
     Scanner sc = new Scanner(System.in);
 
     public void add(){
-        //전공인지 잡지인지 확인하기
-        //이후 추가 정보 입력하게 하기
+//        전공인지 잡지인지 확인하기
+//        이후 추가 정보 입력하게 하기
 //        System.out.println("잡지인가요, 전공인가요?");
 //        String classification = sc.nextLine();
 //
@@ -30,7 +30,7 @@ public class BookMenu implements Menu{
 //            String etc = sc.nextLine();
 //            Book magazine = new Magazine(classification,bookname,publisher,publicationYear,state,etc);
 //            bookList.add(magazine);
-//       }else if (classification.equals("전공책")){
+//       }else if (classification.equals("전공")){
 //            System.out.println("세부주제를 입력해주세요");
 //            String etc = sc.nextLine();
 //            Book studyField = new StudyField(classification,bookname,publisher,publicationYear,state,etc);
@@ -38,7 +38,7 @@ public class BookMenu implements Menu{
 //       }else{
 //            System.out.println(classification + "<- 잘못 입력된 문자");
 //       }
-        Book m = new Magazine("나무","죠밥","publisher","publicationYear","대출가능","etc");
+        Book m = new StudyField("전공","네트워크","publisher","publicationYear","대출가능","etc");
         bookList.add((m));
     }
 
