@@ -1,12 +1,14 @@
 package module.menu.LoanMenu;
-import java.util.ArrayList;
-import java.util.Collections;
 
-public class Loan {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Loan implements Serializable {
     final private String classification;
     final private String bookName;
     final private String bookId;
     private ArrayList<String[]> loanInformation = new ArrayList<>();
+
 
     public Loan(String bookId,String classification,String bookName,String loaner,String loandate) {
         this.classification = classification;
@@ -85,21 +87,5 @@ public class Loan {
             counter++;
         }
     }
+
 }
-
-    //{""}
-    //입력 : 구성원 ID와 도서 ID, 대출일
-    //결국 구성원, 도서의 정보를 받아와서 그중에서 찾아야함.
-    //대출 상태가 된다는것.
-
-//    ==================================================
-//    구분   도서명      대출자  대출일       반납일       대출기간
-//--------------------------------------------------
-//    잡지   자연       강감찬  2017.05.03.  2017.05.05.  3
-//                     이순신  2018.05.13.  2018.05.25.  13
-//                     이순신  2018.05.15.  2018.05.25.  13
-//                     이순신  2017.03.15.  2018.05.25.  13
-//    전공   동물 다큐   이순신  2017.06.12.  2017.06.20.  9
-//          네트워크    이순신  2019.05.01.  (현재 대출중인 경우 반납일과 대출기간 정보 없음)
-//            ==================================================
-

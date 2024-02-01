@@ -1,6 +1,8 @@
 package module.menu.MemberMenu;
 
-public class Member implements Comparable<Member>{
+import java.io.Serializable;
+
+public class Member implements Comparable<Member>, Serializable {
     private String name;
     private String major;
     protected boolean state = true;

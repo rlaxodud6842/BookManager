@@ -1,5 +1,8 @@
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import module.menu.LoanMenu.Loan;
 import module.menu.LoanMenu.LoanMenu;
 import module.menu.LoanMenu.LoanMenuEnum;
 import module.menu.MainMenuSelection;
@@ -13,6 +16,10 @@ public class Main {
         MemberMenu memberMenu = new MemberMenu();
         BookMenu bookMenu = new BookMenu();
         LoanMenu loanMenu = new LoanMenu();
+
+        memberMenu.loadLoanList(loadMemberList());
+        bookMenu.loadBookList(loadBookList());
+        loanMenu.loadLoanList(loadLoanList());
 
 
         while (true) {
@@ -86,8 +93,66 @@ public class Main {
                     }
                 }
             } else if (mainMenuSelection == MainMenuSelection.EXIT.getValue()){
+                saveMeberList(memberMenu.getMemberList());
+                saveBookList(bookMenu.getBookList());
+                saveLoanList(loanMenu.getLoanList());
                 break;
             }
         }
+    }
+    public static void saveMeberList(ArrayList<Member> memberList){
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("memberList"))) {
+            oos.writeObject(memberList);
+            System.out.println("ArrayList saved to " + "memberList");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (Exception e){}
+    }
+    public static void saveBookList(ArrayList<Book> bookList){
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("bookList"))) {
+            oos.writeObject(bookList);
+            System.out.println("ArrayList saved to " + "bookList");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (Exception e){}
+    }
+    public static void saveLoanList(ArrayList<Loan> loanList){
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("loanList"))) {
+            oos.writeObject(loanList);
+            System.out.println("ArrayList saved to " + "loanList");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (Exception e){}
+    }
+
+    public static ArrayList<Member> loadMemberList() {
+        ArrayList<Member> arrayList = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("memberList"))) {
+            arrayList = (ArrayList<Member>) ois.readObject();
+            System.out.println("ArrayList loaded from " + "memberList");
+        } catch (IOException | ClassNotFoundException e) {
+            return arrayList;
+        }catch(Exception e){}
+        return arrayList;
+    }
+    public static ArrayList<Book> loadBookList() {
+        ArrayList<Book> arrayList = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("bookList"))) {
+            arrayList = (ArrayList<Book>) ois.readObject();
+            System.out.println("ArrayList loaded from " + "bookList");
+        } catch (IOException | ClassNotFoundException e) {
+            return arrayList;
+        }catch(Exception e){}
+        return arrayList;
+    }
+    public static ArrayList<Loan> loadLoanList() {
+        ArrayList<Loan> arrayList = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("loanList"))) {
+            arrayList = (ArrayList<Loan>) ois.readObject();
+            System.out.println("ArrayList loaded from " + "loanList");
+        } catch (IOException | ClassNotFoundException e) {
+            return arrayList;
+        }catch(Exception e){}
+        return arrayList;
     }
 }

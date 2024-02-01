@@ -1,11 +1,12 @@
 package module.menu.BookMenu;
 import module.menu.Menu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class BookMenu implements Menu{
+public class BookMenu implements Menu, Serializable {
     private static ArrayList<Book> bookList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
@@ -117,6 +118,9 @@ public class BookMenu implements Menu{
     }
     public ArrayList<Book> getBookList(){
         return BookMenu.bookList;
+    }
+    public void loadBookList(ArrayList<Book> loadedList){
+        BookMenu.bookList = loadedList;
     }
 }
 

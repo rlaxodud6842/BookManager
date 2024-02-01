@@ -6,11 +6,11 @@ import module.menu.Menu;
 
 import module.menu.MemberMenu.Member;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Scanner;
 
-public class LoanMenu implements Menu{
+public class LoanMenu implements Menu, Serializable {
     Scanner sc = new Scanner(System.in);
     private static ArrayList<Loan> loanList = new ArrayList<>();
     BookMenu bm = new BookMenu();
@@ -56,8 +56,6 @@ public class LoanMenu implements Menu{
         }
         return false;
     }
-
-
     public void add(){
         ArrayList<Member> memberList = mm.getMemberList();
         ArrayList<Book> bookList = bm.getBookList();
@@ -141,6 +139,12 @@ public class LoanMenu implements Menu{
             studyFieldLoan.print();
         }
         System.out.println("====================================================");
+    }
+    public ArrayList<Loan> getLoanList(){
+        return LoanMenu.loanList;
+    }
+    public void loadLoanList(ArrayList<Loan> loadedList){
+        LoanMenu.loanList = loadedList;
     }
 }
 

@@ -1,11 +1,14 @@
 package module.menu.MemberMenu;
+import module.menu.LoanMenu.Loan;
+import module.menu.LoanMenu.LoanMenu;
 import module.menu.Menu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class MemberMenu implements Menu{
+public class MemberMenu implements Menu, Serializable {
     private static ArrayList<Member> memberList = new ArrayList<Member>();
     Scanner sc = new Scanner(System.in);
 
@@ -96,5 +99,8 @@ public class MemberMenu implements Menu{
         }
     }
     public ArrayList<Member> getMemberList(){return MemberMenu.memberList;}
+    public void loadLoanList(ArrayList<Member> loadedList){
+        MemberMenu.memberList = loadedList;
+    }
 }
 

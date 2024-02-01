@@ -1,6 +1,8 @@
 package module.menu.BookMenu;
 
-public class Book implements Comparable<Book>{
+import java.io.Serializable;
+
+public class Book implements Comparable<Book>, Serializable {
     private String bookName;
     private String publicationYear;
     private String publisher;
