@@ -84,9 +84,7 @@ public class Main {
                     }else{
                         System.out.println("올바른 숫자를 입력\n");
                     }
-
                 }
-
             } else if (mainMenuSelection == MainMenuSelection.EXIT.getValue()){
                 break;
             }

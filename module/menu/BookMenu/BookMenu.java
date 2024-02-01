@@ -39,7 +39,9 @@ public class BookMenu implements Menu{
 //            System.out.println(classification + "<- 잘못 입력된 문자");
 //       }
         Book m = new StudyField("전공","네트워크","publisher","publicationYear","대출가능","etc");
+        Book b = new Magazine("잡지","콜라마시기","publisher","publicationYear","대출가능","etc");
         bookList.add((m));
+        bookList.add((b));
     }
 
     public void change(){

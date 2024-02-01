@@ -28,8 +28,8 @@ public class MemberMenu implements Menu{
 //       }else{
 //            System.out.println(identify + "<- 잘못 입력된 문자");
 //       }
-        Member s = new Student("강감찬","킬러");
-        Member d = new Student("이순신","조선");
+        Member s = new Student("asd","킬러");
+        Member d = new Student("zxc","조선");
         memberList.add(s);
         memberList.add(d);
     }

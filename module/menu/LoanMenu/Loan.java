@@ -6,7 +6,7 @@ public class Loan {
     final private String classification;
     final private String bookName;
     final private String bookId;
-    private static ArrayList<String[]> loanInformation = new ArrayList<>();
+    private ArrayList<String[]> loanInformation = new ArrayList<>();
 
     public Loan(String bookId,String classification,String bookName,String loaner,String loandate) {
         this.classification = classification;
@@ -45,54 +45,45 @@ public class Loan {
     }
 
     public void print(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(classification+" ");
-        sb.append(bookName+" ");
-
         int counter = 0;
-        ArrayList<String[]> tempLoanInformation = loanInformation;
-        try{
-        if (tempLoanInformation.size() > 1){
-            while(tempLoanInformation.size() != 0){
-                Date min = new Date("9999.99.99");
-                for(String[] loaninfo : tempLoanInformation){
-                    //어레이 리스트를 순회하면서 (제일 작을때) 멈춰서 그녀석을 sb append함
-                    //돌때마다 제일 작은걸 저장
-                    Date loandate = new Date(loaninfo[1]);
-                    if(loandate.isSmallerThanArgument(min)){min = loandate;}
-                    //한번더 돌아서 작은놈 sb에 넣고 삭제
-                }
-                for(String[] loaninfo : tempLoanInformation){
-                    Date loandate = new Date(loaninfo[1]);
-                    if(loandate.isSameValue(min)){
-                        if(counter > 0){
-                            System.out.printf("%s %s %s %s\n",loaninfo[0],loaninfo[1],loaninfo[2],loaninfo[3]);
-                            tempLoanInformation.remove(loaninfo);
-                        }else{
-                            sb.append(loaninfo[0]+" ");
-                            sb.append(loaninfo[1]+" ");
-                            sb.append(loaninfo[2]+" ");
-                            sb.append(loaninfo[3]+" ");
-                            System.out.println(sb);
-
-
-                            tempLoanInformation.remove(loaninfo);
-                        }
-                        counter++;
-                    }
-                }
+        for (String[] loaninfo : loanInformation){
+            StringBuilder sb = new StringBuilder();
+            String loaner = loaninfo[0];
+            String loanDate = loaninfo[1];
+            String returnDate;
+            String loanDue;
+            if (loaninfo[2] == null){
+                returnDate = " ";
+            }else{
+                returnDate = loaninfo[2];
             }
-        }else{
+
+            if (loaninfo[3] == null){
+                loanDue = " ";
+            }else{
+                loanDue = loaninfo[3];
+            }
+
+            if (counter > 0){
+                sb.append("                 ");
+                sb.append(loaner+"   ");
+                sb.append(loanDate+"   ");
+                sb.append(returnDate+"   ");
+                sb.append(loanDue+"   ");
+                System.out.println(sb);
+            }else{
+                sb.append(classification+"   ");
+                sb.append(bookName+"   ");
+                sb.append(loaner+"   ");
+                sb.append(loanDate+"   ");
+                sb.append(returnDate+"   ");
+                sb.append(loanDue+"   ");
+                System.out.println(sb);
+                counter++;
+                //처음 출력되는거라면
+            }
+            counter++;
         }
-            for(String[] loaninfo : loanInformation){
-                sb.append(loaninfo[0]+" ");
-                sb.append(loaninfo[1]+" ");
-                sb.append(loaninfo[2]+" ");
-                sb.append(loaninfo[3]+" ");
-            }
-            System.out.println(sb);
-        }catch(Exception e){}
-        //대출 정보가 하나라면
     }
 }
 
