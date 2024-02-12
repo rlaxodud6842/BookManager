@@ -17,7 +17,7 @@ public class Main {
         BookMenu bookMenu = new BookMenu();
         LoanMenu loanMenu = new LoanMenu();
 
-        memberMenu.loadLoanList(loadMemberList());
+        memberMenu.loadMemberList(loadMemberList());
         bookMenu.loadBookList(loadBookList());
         loanMenu.loadLoanList(loadLoanList());
 
@@ -94,8 +94,8 @@ public class Main {
                 }
             } else if (mainMenuSelection == MainMenuSelection.EXIT.getValue()){
                 saveMeberList(memberMenu.getMemberList());
-                saveBookList(bookMenu.getBookList());
                 saveLoanList(loanMenu.getLoanList());
+                saveBookList(bookMenu.getBookList());
                 break;
             }
         }
@@ -125,7 +125,7 @@ public class Main {
         }catch (Exception e){}
     }
 
-    public static ArrayList<Member> loadMemberList() {
+     public static ArrayList<Member> loadMemberList() {
         ArrayList<Member> arrayList = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("memberList"))) {
             arrayList = (ArrayList<Member>) ois.readObject();

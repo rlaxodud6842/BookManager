@@ -11,6 +11,9 @@ public class Member implements Comparable<Member>, Serializable {
         this.name = name;
         this.major = major;
     }
+    public int getRawId(){
+        return -1;
+    }
 
     public String getName(){
         return this.name;

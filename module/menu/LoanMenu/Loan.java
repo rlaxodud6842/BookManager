@@ -10,6 +10,10 @@ public class Loan implements Serializable {
     private ArrayList<String[]> loanInformation = new ArrayList<>();
 
 
+    public ArrayList<String[]> getLoanInformation(){
+        return this.loanInformation;
+    }
+
     public Loan(String bookId,String classification,String bookName,String loaner,String loandate) {
         this.classification = classification;
         this.bookName = bookName;
@@ -20,11 +24,6 @@ public class Loan implements Serializable {
     public String getClassification(){return classification;}
     public String getBookName(){return bookName;}
     public String getbookId(){return bookId;}
-
-    public void loanInfoAdd(String[] loanInfo){
-        this.loanInformation.add(loanInfo);
-    }
-
     public void loaning(String loaner, String loandate){
         //대출일, 반납일, 대출기간을 어레이에 담는 함수
         //Date date = new Date(loandate);
@@ -67,7 +66,7 @@ public class Loan implements Serializable {
             }
 
             if (counter > 0){
-                sb.append("                 ");
+                sb.append("               ");
                 sb.append(loaner+"   ");
                 sb.append(loanDate+"   ");
                 sb.append(returnDate+"   ");

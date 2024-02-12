@@ -29,18 +29,16 @@ public class Book implements Comparable<Book>, Serializable {
     public String getState(){ return this.state;}
     public String getEtc(){ return this.etc;}
     public String getClassification(){ return this.classification;}
-    public String changeStateToLoanX(){
+    public void changeStateToLoanX(){
         this.state = "대출불가";
-        return "변경이 완료되었습니다";
     }
     public void changeStateToLoaning(){
         this.state = "대출중";
     }
 
-    public void changeStateToLoan(){
+    public void changeStateToLoanO(){
         this.state = "대출가능";
     }
-
 
     @Override
     public int compareTo(Book o) {
@@ -52,13 +50,8 @@ public class Book implements Comparable<Book>, Serializable {
         }
         return 0;
     }
+    public int getRawId(){
+        return -1;
+    }
 
 }
-
-// 도서 관리 정보는 다음과 같다.
-// ● 잡지 도서 정보: ID (M+2자리 숫자), 도서명, 출판사, 출판년도(년월일), 상태(대출 가능, 대출 중, 대출 불가), 권/호
-// ● 전공 도서 정보: ID (B+2자리 숫자), 도서명, 출판사, 출판년도(년월일), 상태(대출 가능, 대출 중, 대출 불가), 세부 주제
-
-//아이디는 별개
-//잡지는 권호, 전공도서는 세부주제
-//나머지는 동일

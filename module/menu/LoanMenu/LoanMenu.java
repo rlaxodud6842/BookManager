@@ -57,6 +57,8 @@ public class LoanMenu implements Menu, Serializable {
         return false;
     }
     public void add(){
+
+
         ArrayList<Member> memberList = mm.getMemberList();
         ArrayList<Book> bookList = bm.getBookList();
 
@@ -89,6 +91,7 @@ public class LoanMenu implements Menu, Serializable {
                             }
                         }catch (Exception e){}
                     }
+                    book.changeStateToLoaning();
                 }
             }
         }else{
@@ -96,6 +99,7 @@ public class LoanMenu implements Menu, Serializable {
             System.out.println("올바르지 않은 입력입니다.");
         }
     }
+
     public void change(){
         System.out.println("반납하는사람 이름을 입력해주세요");
         String targetmemberId = sc.nextLine();
