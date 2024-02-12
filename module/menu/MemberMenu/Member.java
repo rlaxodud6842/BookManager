@@ -1,6 +1,8 @@
 package module.menu.MemberMenu;
 
-public class Member implements Comparable<Member>{
+import java.io.Serializable;
+
+public class Member implements Comparable<Member>, Serializable {
     private String name;
     private String major;
     protected boolean state = true;
@@ -8,6 +10,9 @@ public class Member implements Comparable<Member>{
     public void loadNameAndMajor(String name, String major){
         this.name = name;
         this.major = major;
+    }
+    public int getRawId(){
+        return -1;
     }
 
     public String getName(){
@@ -21,6 +26,7 @@ public class Member implements Comparable<Member>{
 
     public String getState(){return "state";}
 
+    public void getAdditionalInformation(){}
     public String[] loadAdditionalInformation(){
         String[] informations = new String[0];
         return informations;

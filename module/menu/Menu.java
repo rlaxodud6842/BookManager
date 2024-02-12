@@ -1,6 +1,6 @@
 package module.menu;
 public interface Menu {
-    public void add(
+    public void add (
         //추가에 대한것을 구현
     );
     public void change(

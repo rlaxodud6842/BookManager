@@ -19,10 +19,10 @@ public class Date {
     }
     public boolean isSmallerThanArgument(Date argument){
         //인자로 들어온놈보다 현재놈이 작으면 true
-        return this.year <= argument.year && this.year <= argument.month && this.day <= argument.day;
+        return this.year <= argument.year && this.month <= argument.month && this.day <= argument.day;
     }
     public boolean isSameValue(Date argument){
-        return this.year == argument.year && this.year == argument.month && this.day == argument.day;
+        return this.year == argument.year && this.month == argument.month && this.day == argument.day;
     }
 
 }

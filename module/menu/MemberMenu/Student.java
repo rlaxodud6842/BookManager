@@ -7,8 +7,13 @@ public class Student extends Member{
     private String[] addtionalInformation = new String[3];
     private int uid;
 
-    public Student(String name,String major){
+    public int getRawId(){
+        return uid;
+    }
+
+    public Student(String name,String major,int lastId){
         loadNameAndMajor(name,major);
+        Student.id = lastId;
         Student.id++;
         uid = Student.id;
     }

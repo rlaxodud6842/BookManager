@@ -7,10 +7,15 @@ class Lecture extends Member{
     private String[] addtionalInformation = new String[2];
     private int lid;
     
-    public Lecture(String name,String major){
+    public Lecture(String name,String major,int lastId){
         loadNameAndMajor(name,major);
+        Lecture.id = lastId;
         Lecture.id++;
         lid = Lecture.id;
+    }
+
+    public int getRawId(){
+        return lid;
     }
 
     public String getId(){
