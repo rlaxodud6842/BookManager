@@ -1,14 +1,16 @@
 package module.menu.LoanMenu;
 
+import module.menu.MemberMenu.Member;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Loan implements Serializable {
+public class Loan implements Comparable<Loan>, Serializable {
     final private String classification;
     final private String bookName;
     final private String bookId;
     private ArrayList<String[]> loanInformation = new ArrayList<>();
-
 
     public ArrayList<String[]> getLoanInformation(){
         return this.loanInformation;
@@ -32,10 +34,10 @@ public class Loan implements Serializable {
         temp[1] = loandate;
         loanInformation.add(temp);
     }
-    public void returning(String memberId, String returndate){
+    public void returning(String returndate){
+        //이 배열중에 반납이 없는애가 반납 대상이고, 걔를 반납일을 갱신 시켜주면 되네
         for (String[] temp : loanInformation){
-            //정보들 중에서 loaner의 정보를 찾고
-            if (temp[0].equals(memberId)){
+            if (temp[2] == null){
                 Date ldate = new Date(temp[1]);
                 Date rdate = new Date(returndate);
                 //그놈 기반으로 loandate 얻고 거기서 return데이터 갱신
@@ -66,25 +68,36 @@ public class Loan implements Serializable {
             }
 
             if (counter > 0){
-                sb.append("               ");
-                sb.append(loaner+"   ");
-                sb.append(loanDate+"   ");
-                sb.append(returnDate+"   ");
-                sb.append(loanDue+"   ");
+                sb.append("--- | --- |");
+                sb.append(loaner+" | ");
+                sb.append(loanDate+" | ");
+                sb.append(returnDate+" | ");
+                sb.append(loanDue+" |");
                 System.out.println(sb);
             }else{
-                sb.append(classification+"   ");
-                sb.append(bookName+"   ");
-                sb.append(loaner+"   ");
-                sb.append(loanDate+"   ");
-                sb.append(returnDate+"   ");
-                sb.append(loanDue+"   ");
+                sb.append(classification+" | ");
+                sb.append(bookName+" | ");
+                sb.append(loaner+" | ");
+                sb.append(loanDate+" | ");
+                sb.append(returnDate+" | ");
+                sb.append(loanDue+" |");
                 System.out.println(sb);
                 counter++;
                 //처음 출력되는거라면
             }
             counter++;
         }
+    }
+
+    @Override
+    public int compareTo(Loan o) {
+        int compareResult = this.bookName.compareTo(o.bookName);
+        if (compareResult < 0) {
+            return -1;
+        } else if (compareResult > 0) {
+            return 1;
+        }
+        return 0;
     }
 
 }

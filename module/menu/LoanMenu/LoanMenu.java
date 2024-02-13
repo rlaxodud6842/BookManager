@@ -8,6 +8,7 @@ import module.menu.MemberMenu.Member;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class LoanMenu implements Menu, Serializable {
@@ -57,8 +58,6 @@ public class LoanMenu implements Menu, Serializable {
         return false;
     }
     public void add(){
-
-
         ArrayList<Member> memberList = mm.getMemberList();
         ArrayList<Book> bookList = bm.getBookList();
 
@@ -101,8 +100,6 @@ public class LoanMenu implements Menu, Serializable {
     }
 
     public void change(){
-        System.out.println("반납하는사람 이름을 입력해주세요");
-        String targetmemberId = sc.nextLine();
         System.out.println("반납할 도서 ID를 입력해주세요");
         String targetbookId = sc.nextLine();
         System.out.println("반납일자를 입력해주세요");
@@ -112,7 +109,7 @@ public class LoanMenu implements Menu, Serializable {
         for (Loan loaninfo : loanList){
             if (loaninfo.getbookId().equals(targetbookId)){
                 //찾아서 그녀석의 반납일자와 반납일을 갱신시켜준다
-                loaninfo.returning(targetmemberId,returnDate);
+                loaninfo.returning(returnDate);
             }
         }
         //book 객체의 상태를 동기화 시켜준다.
@@ -120,20 +117,25 @@ public class LoanMenu implements Menu, Serializable {
     }
     public void show(){
         System.out.println("====================================================");
-        System.out.println("구분    도서명    대출자    대출일     반납일     대출기간");
+        System.out.println("구분 | 도서명 | 대출자 | 대출일 | 반납일 | 대출기간");
         System.out.println("----------------------------------------------------");
 
         ArrayList<Loan> magazineList = new ArrayList<>();
         ArrayList<Loan> studyFieldList = new ArrayList<>();
 
         for (Loan loaninfo : loanList) {
-            //교수인지 학생인지 구분 후 각각 배열에 넣기
+            //잡지이면
             if(loaninfo.getClassification().equals("잡지")){
                 magazineList.add(loaninfo);
             }else{
+                //전공이면
                 studyFieldList.add(loaninfo);
             }
         }
+
+        //각 이름 정렬
+        Collections.sort(magazineList);
+        Collections.sort(studyFieldList);
 
         for (Loan magazineLoan : magazineList){
             magazineLoan.print();
@@ -150,5 +152,6 @@ public class LoanMenu implements Menu, Serializable {
     public void loadLoanList(ArrayList<Loan> loadedList){
         LoanMenu.loanList = loadedList;
     }
+
 }
 

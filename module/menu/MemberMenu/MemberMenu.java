@@ -59,6 +59,8 @@ public class MemberMenu implements Menu, Serializable {
                         }
                     }
                 }
+            }else{
+                continue;
             }
             //대출안한 책들을 추가한 리스트가 비어있지 않다 = 대출 안한거 한개라도 있다
             if (!loaningBook.isEmpty()){
@@ -67,15 +69,16 @@ public class MemberMenu implements Menu, Serializable {
                     System.out.println(bookname);
                 }
                 return;
-            }
-            //그게 아니면 상태를 바꿔요
-            if(member.state){
-                member.state = false;
             }else{
-                member.state = true;
+                //그게 아니면 상태를 바꿔요
+                if(member.state){
+                    member.state = false;
+                }else{
+                    member.state = true;
+                }
+                System.out.println("상태가 정상적으로 변경되었습니다.");
+                return;
             }
-            System.out.println("상태가 정상적으로 변경되었습니다.");
-            return;
         }
     }
 

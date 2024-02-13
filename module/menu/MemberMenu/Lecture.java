@@ -21,7 +21,6 @@ class Lecture extends Member{
     public String getId(){
         return "F"+lid;
     }
-
     public String getState(){
         if (this.state == true){
             return "재직";
